@@ -28,14 +28,13 @@ public class TiendaImpl implements Tienda {
 
 	@Override
 	public Set<Producto> getProductos() {
-		// TODO Auto-generated method stub
 		Set<Producto> nameFound = new TreeSet<Producto>(new Comparator<Producto>() {
 			@Override
 			public int compare(Producto o1, Producto o2) {
-				// TODO Auto-generated method stub
-				if (o1.equals(o2))
-					return 0;
-				return Collator.getInstance(new Locale("es")).compare(o1.getNombreProd(), o2.getNombreProd());
+				if (o1.equals(o2))	return 0;
+				String prod1 = o1.getNombreProd() + o1.getIdProducto();
+				String prod2 = o2.getNombreProd() + o2.getIdProducto();
+				return Collator.getInstance(new Locale("es")).compare(prod1,prod2);
 				}
 			
 		});
@@ -45,7 +44,6 @@ public class TiendaImpl implements Tienda {
 
 	@Override
 	public Set<Producto> getProductos(String descripcion) {
-		// TODO Auto-generated method stub
 		Set<Producto> prodFound = new TreeSet<Producto>();
 		prodFound.addAll(daoProd.findByDescripcion(descripcion));
 		return prodFound;
@@ -53,7 +51,6 @@ public class TiendaImpl implements Tienda {
 
 	@Override
 	public double getMediaPrecioProductosByFabricante(int idFabricante) {
-		// TODO Auto-generated method stub
 		List<Producto> fabricantes = daoFab.findById(idFabricante).getProductos();
 		for (Producto producto : fabricantes) {
 			producto.getPrecio();
