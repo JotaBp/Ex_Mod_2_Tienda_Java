@@ -44,18 +44,29 @@ public class TiendaImpl implements Tienda {
 
 	@Override
 	public Set<Producto> getProductos(String descripcion) {
-		Set<Producto> prodFound = new TreeSet<Producto>();
-		prodFound.addAll(daoProd.findByDescripcion(descripcion));
-		return prodFound;
+//		Set<Producto> prodFound = new TreeSet<Producto>();
+//		prodFound.addAll(daoProd.findByDescripcion(descripcion));
+//		if(prodFound.size() == 0) return null;
+//		return prodFound;
+		List<Producto> prodFound = daoProd.findByDescripcion(descripcion);
+		return prodFound.size() > 0 ? new TreeSet<Producto>(prodFound) : null;
 	}
 
 	@Override
 	public double getMediaPrecioProductosByFabricante(int idFabricante) {
-		List<Producto> fabricantes = daoFab.findById(idFabricante).getProductos();
-		for (Producto producto : fabricantes) {
-			producto.getPrecio();
-		} 
-		return 0;
+		Fabricante fabricante = daoFab.findById(idFabricante);
+		
+		if (fabricante == null) {
+			return 0;
+		} else {
+			List<Producto> productos = fabricante.getProductos();
+			Double acumuladorPrecios = 0.0;
+			for (Producto producto : productos) {
+				acumuladorPrecios = acumuladorPrecios + producto.getPrecio();
+			} 			
+			Double media = acumuladorPrecios/productos.size();
+			return media;
+		}
 	}
 
 	@Override
