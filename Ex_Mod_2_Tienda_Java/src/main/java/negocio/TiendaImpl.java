@@ -113,8 +113,7 @@ public class TiendaImpl implements Tienda {
 
 	@Override
 	public Fabricante getFabricante(int idFabricante) {
-		// TODO Auto-generated method stub
-		return null;
+		return daoFab.findByIdLazy(idFabricante);
 	}
 
 	@Override
