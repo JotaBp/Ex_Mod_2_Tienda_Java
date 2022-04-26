@@ -42,6 +42,22 @@ class TestTienda {
 		assertEquals(1, borrado);
 		con.close();
 	}
+
+//	@Test
+//	void testSaveProd() throws Exception{
+//		Fabricante f = new Fabricante();
+//		f.setNombreFab("Fabricante Nuevo Test");
+//		int cantAnterior = cantidadFabricantes();
+//		tienda.addFabricante(f);
+//		assertEquals(cantidadFabricantes(), cantAnterior+1);
+//		con = FuenteDatos.getConnection();
+//		String sql = "delete from fabricantes where fabricante = ?";
+//		PreparedStatement ps = con.prepareStatement(sql);
+//		ps.setString(1, "Fabricante Nuevo Test");
+//		int borrado = ps.executeUpdate();
+//		assertEquals(1, borrado);
+//		con.close();
+//	}
 	
 	@Test
 	void testGetProductos() throws Exception{

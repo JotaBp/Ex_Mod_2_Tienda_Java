@@ -19,8 +19,6 @@ public class TiendaImpl implements Tienda {
 	private ProductoDao daoProd;
 	private FabricanteDao daoFab;
 
-	
-
 	public TiendaImpl() {
 		this.daoProd = new ProductoDaoImpl();
 		this.daoFab = new FabricanteDaoImpl();
@@ -31,12 +29,13 @@ public class TiendaImpl implements Tienda {
 		Set<Producto> nameFound = new TreeSet<Producto>(new Comparator<Producto>() {
 			@Override
 			public int compare(Producto o1, Producto o2) {
-				if (o1.equals(o2))	return 0;
+				if (o1.equals(o2))
+					return 0;
 				String prod1 = o1.getNombreProd() + o1.getIdProducto();
 				String prod2 = o2.getNombreProd() + o2.getIdProducto();
-				return Collator.getInstance(new Locale("es")).compare(prod1,prod2);
-				}
-			
+				return Collator.getInstance(new Locale("es")).compare(prod1, prod2);
+			}
+
 		});
 		nameFound.addAll(daoProd.findAll());
 		return nameFound;
@@ -55,18 +54,19 @@ public class TiendaImpl implements Tienda {
 	@Override
 	public double getMediaPrecioProductosByFabricante(int idFabricante) {
 		Fabricante fabricante = daoFab.findById(idFabricante);
-		
-		if (fabricante == null) {
-			return 0;
-		} else {
+		Double media = 0.0;
+
+		if (fabricante != null) {
 			List<Producto> productos = fabricante.getProductos();
-			Double acumuladorPrecios = 0.0;
-			for (Producto producto : productos) {
-				acumuladorPrecios = acumuladorPrecios + producto.getPrecio();
-			} 			
-			Double media = acumuladorPrecios/productos.size();
-			return media;
+			if (productos != null && productos.size() > 0) {
+				for (Producto producto : productos) {
+					media += producto.getPrecio();
+				}
+				media /= productos.size();
+			}
 		}
+
+		return media;
 	}
 
 	@Override
@@ -76,14 +76,23 @@ public class TiendaImpl implements Tienda {
 
 	@Override
 	public void addProducto(Producto producto) {
-		// TODO Auto-generated method stub
-		
+		daoProd.save(producto);
 	}
 
 	@Override
 	public Set<Fabricante> getFabricantes() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Fabricante> fabsOrdenadosSet = new TreeSet<Fabricante>(new Comparator<Fabricante>() {
+			@Override
+			public int compare(Fabricante o1, Fabricante o2) {
+				if (o1.equals(o2))
+					return 0;
+				String fabO1 = o1.getNombreFab() + o1.getIdFabricante();
+				String fabO2 = o2.getNombreFab() + o2.getIdFabricante();
+				return Collator.getInstance(new Locale("es")).compare(fabO1, fabO2);
+			}
+		});
+		fabsOrdenadosSet.addAll(daoFab.findAll());
+		return fabsOrdenadosSet;
 	}
 
 	@Override
