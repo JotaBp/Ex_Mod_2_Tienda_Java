@@ -1,0 +1,16 @@
+#contPrincipal{
+	background-color: lightcyan;
+	padding: 20px;
+    width: 75%;
+    margin: auto;
+    border: 1px solid blue;
+    box-shadow: 10px 10px 25px lightblue;
+    border-radius: 25px;
+}
+h1{
+	font-family: helvetica, Arial, Verdana, sans-serif;
+	color: blueviolet;
+}
+p{
+	text-align: justify;
+}

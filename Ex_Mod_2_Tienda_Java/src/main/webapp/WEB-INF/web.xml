@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>Tienda</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+<!--En esta lista xml hacemos el enrutado a las vistas con el servlet -->
+<!--que con su servlet-name apunta al nombre de la clase y con el -->
+<!--servlet-class al package donde se ecnuentra dicha clase, y las -->
+<!--referenciamos con el servlet-mapping, que con su servlet-name apunta -->
+<!--al nombre de la clase del <servlet>, el <servlet-name>, y con el  -->
+<!--<url-pattern> le indicamos en que ruta url de nuestro server debe -->
+<!--mostrar dicha vista que le pasamos a traves del <servlet-name>. -->
+  <servlet>
+  	<servlet-name>ControllerListaProductos</servlet-name>
+  	<servlet-class>vistas.servlets.ControllerListaProductos</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ControllerListaProductos</servlet-name>
+  	<url-pattern>/listado_productos</url-pattern>
+  </servlet-mapping>
+
+</web-app>

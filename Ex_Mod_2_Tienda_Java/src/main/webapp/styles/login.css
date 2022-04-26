@@ -1,0 +1,47 @@
+@charset "ISO-8859-1";
+.cabecera, .cuerpo{
+  width: 30%;
+  padding: 15px;
+  margin: 20px auto;
+  font-family: Helvetica;
+}
+
+.cabecera{
+  text-align: center;
+  margin-bottom: 0 !important;
+}
+
+.cuerpo{
+  border: 1px solid burlywood;
+  box-shadow: 3px 3px 10px lightgray;
+  border-radius: 3px;
+  background-color: lightblue;
+  margin-top: 0 !important;
+}
+
+form{
+  display: block
+}
+
+input{
+  display: block;
+  width: 70%;
+  margin: 3px auto 10px;
+  font-size: 1.2em;
+}
+
+label {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+}
+ 
+button, .boton{
+  border: none;
+  background-color: bisque;
+  color: white;
+}
+
+button, .boton:hover{
+  background-color: #808080;
+}
