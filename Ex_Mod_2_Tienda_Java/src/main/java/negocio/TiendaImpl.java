@@ -97,8 +97,18 @@ public class TiendaImpl implements Tienda {
 
 	@Override
 	public Set<Fabricante> getFabricantesActivos() {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Fabricante> fabsOrdenadosSet = new TreeSet<Fabricante>(new Comparator<Fabricante>() {
+			@Override
+			public int compare(Fabricante o1, Fabricante o2) {
+				if (o1.equals(o2))
+					return 0;
+				String fabO1 = o1.getNombreFab() + o1.getIdFabricante();
+				String fabO2 = o2.getNombreFab() + o2.getIdFabricante();
+				return Collator.getInstance(new Locale("es")).compare(fabO1, fabO2);
+			}
+		});
+		fabsOrdenadosSet.addAll(daoFab.findOnlyActive());
+		return fabsOrdenadosSet;
 	}
 
 	@Override
