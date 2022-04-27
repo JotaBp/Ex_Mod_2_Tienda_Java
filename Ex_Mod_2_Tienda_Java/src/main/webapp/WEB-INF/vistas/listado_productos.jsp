@@ -32,8 +32,8 @@ a su vez son los métodos getters y setters de las clases de dichos objetos (el n
 de la propertie es el nombre del metodo sin el get o set y todo el nombre en 
 minúsculas). -->
 
-			<c:forEach items="${prod}" var="prods">
-			<li>${prod.idproducto} ${prod.nombreprod}, ${prod.precio} - ${prod.fabricanteprod}</li> 
+			<c:forEach items="${prods}" var="prod">
+			<li>${prod.idProducto} ${prod.nombreProd}, ${prod.precio} - ${prod.fabricanteProd.nombreFab}</li> 
 			</c:forEach>
 		</ul>
 		<a href="index.html"><button>Volver</button></a>
